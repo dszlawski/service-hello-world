@@ -138,7 +138,7 @@ autoscaling_max = t.add_parameter(Parameter(
     "AutoscalingMax",
     Type="Number",
     Description="Maximum number of tasks to autoscale",
-    Default=2
+    Default=4
 ))
 
 autoscaling_min = t.add_parameter(Parameter(
@@ -595,14 +595,14 @@ service = t.add_resource(ecs.Service(
     Role=Ref(service_role),
     TaskDefinition=Ref(task_definition),
     DeploymentConfiguration=ecs.DeploymentConfiguration(
-        MaximumPercent="100",
+        MaximumPercent="200",
         MinimumHealthyPercent="50"
     ),
-    PlacementConstraints=[
-        ecs.PlacementConstraint(
-            Type="distinctInstance"
-        )
-    ],
+#    PlacementConstraints=[
+#        ecs.PlacementConstraint(
+#            Type="distinctInstance"
+#        )
+#    ],
 ))
 
 """
